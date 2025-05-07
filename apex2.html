@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intermediate Task</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #e0f7e9; /* light green background */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wrapper {
+      max-width: 900px;
+      width: 100%;
+      padding: 20px;
+      background: #ffffff;
+      border: 2px solid #4CAF50; /* green border */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    h1 {
+      text-align: center;
+      color: #2e7d32; /* dark green */
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    form {
+      border: 1px solid #81c784; /* medium green */
+      padding: 15px;
+      border-radius: 8px;
+    }
+    h2 {
+      color: #388e3c; /* medium-dark green */
+    }
+    input, button {
+      margin: 5px 0;
+      display: block;
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #a5d6a7; /* light green border */
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50; /* green button */
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #388e3c; /* darker on hover */
+    }
+    .todo-list li {
+      margin: 5px 0;
+    }
+    @media (min-width: 600px) {
+      .container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>My Intermediate Web Project</h1>
+    <div class="container">
+      <!-- Contact Form -->
+      <form id="contactForm">
+        <h2>Contact Form</h2>
+        <input type="text" id="name" placeholder="Enter your name" required />
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <button type="submit">Submit</button>
+      </form>
+
+      <!-- To-Do List -->
+      <div>
+        <h2>Dynamic To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Enter a task" />
+        <button onclick="addTask()">Add Task</button>
+        <ul class="todo-list" id="todoList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Form Validation
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      const email = document.getElementById("email").value;
+      if (!email.includes("@")) {
+        alert("Please enter a valid email address.");
+        e.preventDefault();
+      } else {
+        alert("Form submitted successfully!");
+      }
+    });
+
+    // Add Task Function
+    function addTask() {
+      const taskInput = document.getElementById("taskInput");
+      const task = taskInput.value.trim();
+      if (task) {
+        const li = document.createElement("li");
+        li.textContent = task;
+        document.getElementById("todoList").appendChild(li);
+        taskInput.value = "";
+      } else {
+        alert("Please enter a task.");
+      }
+    }
+  </script>
+</body>
+</html>
